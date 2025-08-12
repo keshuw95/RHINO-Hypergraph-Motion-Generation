@@ -46,6 +46,22 @@ Real traffic is often **many-to-many**: a single maneuver can induce coordinated
 - **Cleaner reasoning:** messages flow through group contexts rather than ad-hoc pairwise mixing.
 
 ---
+## Agent–Behavior Graph & Agent–Behavior Hypergraph
+
+**Agent–Behavior Graph (ABG).**  
+Each agent is expanded into **behavior nodes** (e.g., L/K/R lateral modes). This disentangles multi-modality at the node level, so messages are passed **per intention** rather than averaged across incompatible futures. Edges still encode pairwise influence, but now **conditioned on mode**. Infeasible modes are masked (no edges/messages), preventing impossible behaviors from contaminating reasoning.
+
+**Agent–Behavior Hypergraph (ABH).**  
+We lift ABG into a hypergraph where **hyperedges connect behavior nodes across multiple agents** that are likely to act jointly (e.g., zipper-merge group, platoon, courtesy-yield set). This directly encodes **many-to-many, intention-aware** influence. In RHINO:
+- Hyperedges are inferred at **multiple scales** (small to large groups) from trajectory-affinity.
+- **Intention-conditioned** message passing flows node→hyperedge→node.
+- The **incidence matrix** exposes which behavior nodes participate in which groups, aiding interpretability.
+
+<p align="center">
+  <img src="docs/figs/def_hypergraph.jpg" width="85%" alt="Graphs vs. hypergraphs (definitions)">
+</p>
+
+---
 
 ## Core Components
 
@@ -55,7 +71,7 @@ Real traffic is often **many-to-many**: a single maneuver can induce coordinated
 - **Multi-modal decoder:** GRU+MLP yields per-mode trajectory distributions.  
 - **Agent–Behavior Graph:** Expands each agent into behavior nodes to prevent “mode averaging.”
 
-> Output: multi-agent, multi-modal candidates \(\hat{\mathbf{X}}_{T+1:T+F}^{M}\) + intention probabilities.
+> Output: multi-agent, multi-modal candidates $\hat{\mathbf{X}}_{T+1:T+F}^{M}$ + intention probabilities.
 
 ### 2) Multi-scale Hypergraph Relational Encoder
 - **Topology inference:** Builds **S** hypergraph scales by grouping agents with high trajectory-affinity.  
@@ -71,9 +87,9 @@ Real traffic is often **many-to-many**: a single maneuver can induce coordinated
 </p>
 
 ### 3) Posterior Distribution Learner (CVAE)
-- Learns a **latent space** \( \mathbf{Z} \) for stochastic futures given history + candidates.  
+- Learns a **latent space** $ \mathbf{Z} $ for stochastic futures given history + candidates.  
 - **ELBO** training balances reconstruction fidelity and calibrated uncertainty.  
-- At inference, sample \( \mathbf{Z} \) to draw **K** diverse, plausible trajectories.
+- At inference, sample $ \mathbf{Z} $ to draw **K** diverse, plausible trajectories.
 
 <p align="center">
   <img src="docs/figs/posterior_distribution_learner.jpg" width="80%" alt="Posterior learner">
