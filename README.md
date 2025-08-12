@@ -5,7 +5,8 @@
 > 📄 Paper (preprint): *Hypergraph-based Motion Generation with Multi-modal Interaction Relational Reasoning*  
 > 💻 Code: https://github.com/keshuw95/RHINO-Hypergraph-Motion-Generation
 
-![Framework](docs/figs/framework_architecture.pdf)
+![Framework](docs/figs/framework_architecture.jpg)
+
 
 ---
 
@@ -31,7 +32,7 @@ RHINO is organized as **predict → reason → generate**:
    Lifts candidates into **multi-scale hypergraphs** (hyperedges = groups), performs **intention-conditioned message passing**, and uses a **CVAE** with a **residual decoder** to sample **K** plausible futures per scene.
 
 <p align="center">
-  <img src="docs/figs/RHINO.pdf" width="85%" alt="RHINO overview">
+  <img src="docs/figs/RHINO.jpg" width="85%" alt="RHINO overview">
 </p>
 
 ---
@@ -65,8 +66,8 @@ Real traffic is often **many-to-many**: a single maneuver can induce coordinated
 - **Outputs:** scale-stacked embeddings encoding both **fine** (pairwise) and **coarse** (group) dynamics.
 
 <p align="center">
-  <img src="docs/figs/hypergraph_encoder_1.pdf" width="75%" alt="Multi-scale topology">
-  <img src="docs/figs/hypergraph_encoder_2.pdf" width="75%" alt="Hypergraph message passing">
+  <img src="docs/figs/hypergraph_encoder_1.jpg" width="75%" alt="Multi-scale topology">
+  <img src="docs/figs/hypergraph_encoder_2.jpg" width="75%" alt="Hypergraph message passing">
 </p>
 
 ### 3) Posterior Distribution Learner (CVAE)
@@ -75,7 +76,7 @@ Real traffic is often **many-to-many**: a single maneuver can induce coordinated
 - At inference, sample \( \mathbf{Z} \) to draw **K** diverse, plausible trajectories.
 
 <p align="center">
-  <img src="docs/figs/posterior_distribution_learner.pdf" width="80%" alt="Posterior learner">
+  <img src="docs/figs/posterior_distribution_learner.jpg" width="80%" alt="Posterior learner">
 </p>
 
 ### 4) Residual Motion Generator
@@ -85,7 +86,7 @@ Real traffic is often **many-to-many**: a single maneuver can induce coordinated
 - Produces **K** futures per agent; enforces temporal smoothness and physical plausibility.
 
 <p align="center">
-  <img src="docs/figs/motion_generator.pdf" width="70%" alt="Motion generator">
+  <img src="docs/figs/motion_generator.jpg" width="70%" alt="Motion generator">
 </p>
 
 ---
@@ -110,7 +111,7 @@ RHINO exposes several **human-readable** artifacts:
 These views help explain **why** a forecast was produced (and flag odd groupings).
 
 <p align="center">
-  <img src="docs/figs/result_hypergraph_22.pdf" width="85%" alt="Hypergraph inference example">
+  <img src="docs/figs/result_hypergraph_22.jpg" width="85%" alt="Hypergraph inference example">
 </p>
 
 ---
