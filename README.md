@@ -2,8 +2,10 @@
 
 **RHINO** is a two-stage framework for **multi-agent, multi-modal motion prediction** that performs explicit **group-wise relational reasoning**. It couples a graph-based predictor (**GIRAFFE**) with a **multi-scale hypergraph** encoder and a **CVAE**-driven generator to produce diverse, socially consistent futures.
 
-> 📄 Paper (preprint): *Hypergraph-based Motion Generation with Multi-modal Interaction Relational Reasoning*  
-> 💻 Code: https://github.com/keshuw95/RHINO-Hypergraph-Motion-Generation
+
+> 📄 Paper (preprint): [*Hypergraph-based Motion Generation with Multi-modal Interaction Relational Reasoning*](https://arxiv.org/abs/2409.11676)  
+> 💻 Code: [github.com/keshuw95/RHINO-Hypergraph-Motion-Generation](https://github.com/keshuw95/RHINO-Hypergraph-Motion-Generation)
+
 
 <p align="center">
   <img src="docs/figs/framework_architecture.jpg" width="85%" alt="Framework">
