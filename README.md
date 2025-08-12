@@ -5,8 +5,9 @@
 > 📄 Paper (preprint): *Hypergraph-based Motion Generation with Multi-modal Interaction Relational Reasoning*  
 > 💻 Code: https://github.com/keshuw95/RHINO-Hypergraph-Motion-Generation
 
-![Framework](docs/figs/framework_architecture.jpg)
-
+<p align="center">
+  <img src="docs/figs/framework_architecture.jpg" width="85%" alt="Framework">
+</p>
 
 ---
 
@@ -58,7 +59,7 @@ We lift ABG into a hypergraph where **hyperedges connect behavior nodes across m
 - The **incidence matrix** exposes which behavior nodes participate in which groups, aiding interpretability.
 
 <p align="center">
-  <img src="docs/figs/def_hypergraph.jpg" width="85%" alt="Graphs vs. hypergraphs (definitions)">
+  <img src="docs/figs/def_hypergraph.jpg" width="70%" alt="Graphs vs. hypergraphs (definitions)">
 </p>
 
 ---
@@ -71,7 +72,7 @@ We lift ABG into a hypergraph where **hyperedges connect behavior nodes across m
 - **Multi-modal decoder:** GRU+MLP yields per-mode trajectory distributions.  
 - **Agent–Behavior Graph:** Expands each agent into behavior nodes to prevent “mode averaging.”
 
-> Output: multi-agent, multi-modal candidates $\hat{\mathbf{X}}_{T+1:T+F}^{M}$ + intention probabilities.
+> Output: multi-agent, multi-modal candidates + intention probabilities.
 
 ### 2) Multi-scale Hypergraph Relational Encoder
 - **Topology inference:** Builds **S** hypergraph scales by grouping agents with high trajectory-affinity.  
@@ -87,9 +88,9 @@ We lift ABG into a hypergraph where **hyperedges connect behavior nodes across m
 </p>
 
 ### 3) Posterior Distribution Learner (CVAE)
-- Learns a **latent space** $ \mathbf{Z} $ for stochastic futures given history + candidates.  
+- Learns a **latent space** $Z$ for stochastic futures given history + candidates.  
 - **ELBO** training balances reconstruction fidelity and calibrated uncertainty.  
-- At inference, sample $ \mathbf{Z} $ to draw **K** diverse, plausible trajectories.
+- At inference, sample $Z$ to draw **K** diverse, plausible trajectories.
 
 <p align="center">
   <img src="docs/figs/posterior_distribution_learner.jpg" width="80%" alt="Posterior learner">
@@ -127,10 +128,28 @@ RHINO exposes several **human-readable** artifacts:
 These views help explain **why** a forecast was produced (and flag odd groupings).
 
 <p align="center">
-  <img src="docs/figs/result_hypergraph_22.jpg" width="85%" alt="Hypergraph inference example">
+  <img src="docs/figs/result_hypergraph_22.jpg" width="75%" alt="Hypergraph inference example">
 </p>
 
 ---
 
-## Repository Map (framework parts)
 
+## Citation
+
+If you find **RHINO** (and **GIRAFFE**) useful in your research, please cite:
+
+```bibtex
+@article{wu2024hypergraph,
+  title={Hypergraph-based motion generation with multi-modal interaction relational reasoning},
+  author={Wu, Keshu and Zhou, Yang and Shi, Haotian and Lord, Dominique and Ran, Bin and Ye, Xinyue},
+  journal={arXiv preprint arXiv:2409.11676},
+  year={2024}
+}
+```
+
+---
+
+## Acknowledgments
+
+Our multi-scale hypergraph design and group-wise interaction reasoning were inspired in part by **GroupNet** from MediaBrain@SJTU.  
+Repo: https://github.com/MediaBrain-SJTU/GroupNet
